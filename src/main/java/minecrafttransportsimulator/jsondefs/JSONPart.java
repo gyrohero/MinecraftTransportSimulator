@@ -8,6 +8,7 @@ import minecrafttransportsimulator.jsondefs.JSONVehicle.VehicleDoor;
 import minecrafttransportsimulator.jsondefs.JSONVehicle.VehiclePart;
 import minecrafttransportsimulator.jsondefs.JSONVehicle.VehiclePart.ParticleObject;
 import minecrafttransportsimulator.jsondefs.JSONVehicle.VehicleRendering;
+import minecrafttransportsimulator.jsondefs.JSONDecor.FuelSupplier;
 
 public class JSONPart extends AJSONMultiModelProvider<JSONPart.JSONPartGeneral>{
     public JSONPartEngine engine;
@@ -145,6 +146,7 @@ public class JSONPart extends AJSONMultiModelProvider<JSONPart.JSONPartGeneral>{
     	public String interactionType;
     	public boolean feedsVehicles;
     	public int inventoryUnits;
+    	public FuelSupplier fuelSupplier;
     }
     
     public class JSONPartEffector{

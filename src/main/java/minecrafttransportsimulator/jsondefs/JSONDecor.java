@@ -2,7 +2,10 @@ package minecrafttransportsimulator.jsondefs;
 
 import java.util.List;
 
+import minecrafttransportsimulator.baseclasses.Point3d;
+
 public class JSONDecor extends AJSONMultiModelProvider<JSONDecor.DecorGeneral>{
+	public FuelSupplier fuelSupplier;
 
     public class DecorGeneral extends AJSONMultiModelProvider<JSONDecor.DecorGeneral>.General{
     	public String type;
@@ -23,5 +26,20 @@ public class JSONDecor extends AJSONMultiModelProvider<JSONDecor.DecorGeneral>{
     	public float zPos;
     	public float scale;
     	public String color;
+    }
+    
+    public class FuelSupplier{
+    	public String hoseObjectName;
+    	public int numSegments;
+    	public Point3d hoseStart;
+    	public Point3d hoseEnd;
+    	
+    	public String nozzleObjectName;
+    	public Point3d nozzlePos;
+    	public Point3d attachRot;
+    	
+    	public float maxExtend;
+    	public boolean isRigid;
+    	public float maxBend;
     }
 }

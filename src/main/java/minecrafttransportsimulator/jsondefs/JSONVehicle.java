@@ -57,6 +57,14 @@ public class JSONVehicle extends AJSONMultiModelProvider<JSONVehicle.VehicleGene
         public Point3d hookupPos;
         public String hookupType;
         public List<PackInstrument> instruments;
+        public List<FuelPoint> fuelPoints;
+        
+        public class FuelPoint{
+            public Point3d pos;
+            public Point3d rot;
+            public List<String> linkedDoors;
+            public float autoconnectDistance;
+        }
     }
     @Deprecated
     public class VehiclePlane{
