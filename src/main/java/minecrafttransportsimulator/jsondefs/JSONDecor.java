@@ -36,6 +36,7 @@ public class JSONDecor extends AJSONMultiModelProvider<JSONDecor.DecorGeneral>{
     	
     	public String nozzleObjectName;
     	public Point3d nozzlePos;
+    	public Point3d nozzleHosePos;
     	public Point3d attachRot;
     	
     	public float maxExtend;

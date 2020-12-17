@@ -10,6 +10,7 @@ import minecrafttransportsimulator.blocks.tileentities.components.ATileEntityBas
 import minecrafttransportsimulator.jsondefs.JSONDecor;
 import minecrafttransportsimulator.mcinterface.IWrapperNBT;
 import minecrafttransportsimulator.mcinterface.IWrapperWorld;
+import minecrafttransportsimulator.rendering.components.HoseObject;
 import minecrafttransportsimulator.rendering.instances.RenderDecor;
 
 /**Decor tile entity.  Contains the definition so we know how
@@ -20,6 +21,7 @@ import minecrafttransportsimulator.rendering.instances.RenderDecor;
  */
 public class TileEntityDecor extends ATileEntityBase<JSONDecor>{
 	public final BoundingBox[] boundingBoxes = new BoundingBox[4];
+	public HoseObject<JSONDecor> hose;
 
 	//Generic text variables.
 	protected final List<String> textLines;

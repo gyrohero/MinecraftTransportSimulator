@@ -138,6 +138,15 @@ public class Point3d{
 	}
 	
 	/**
+	 * Returns the axis-angles from the passed in point to this point.
+	 */
+	public Point3d anglesFrom(Point3d point) {
+		double totalAngle = Math.toDegrees(Math.acos(point.dotProduct(this)));
+		Point3d axis = point.crossProduct(this).normalize();
+		return axis.multiply(totalAngle);
+	}
+	
+	/**
 	 * Returns the dot product between this point and the passed-in point.
 	 */
 	public double dotProduct(Point3d point){

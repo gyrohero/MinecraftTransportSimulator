@@ -19,6 +19,7 @@ import minecrafttransportsimulator.baseclasses.Point3d;
 import minecrafttransportsimulator.baseclasses.RadioBeacon;
 import minecrafttransportsimulator.items.instances.ItemInstrument;
 import minecrafttransportsimulator.items.instances.ItemPart;
+import minecrafttransportsimulator.jsondefs.JSONVehicle.VehicleMotorized.FuelPoint;
 import minecrafttransportsimulator.jsondefs.JSONVehicle.VehiclePart;
 import minecrafttransportsimulator.mcinterface.IWrapperEntity;
 import minecrafttransportsimulator.mcinterface.IWrapperNBT;
@@ -72,6 +73,7 @@ abstract class EntityVehicleE_Powered extends EntityVehicleD_Moving implements I
 	public String selectedBeaconName;
 	public RadioBeacon selectedBeacon;
 	public FluidTank fuelTank;
+	public FuelPoint currentFuelPoint;
 	/**List containing all lights that are powered on (shining).  Created as a set to allow for add calls that don't add duplicates.**/
 	public final Set<LightType> lightsOn = new HashSet<LightType>();
 	/**List containing all active custom variable names that are on.    Created as a set to allow for add calls that don't add duplicates.**/

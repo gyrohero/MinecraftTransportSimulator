@@ -16,6 +16,8 @@ public class RenderDecor extends ARenderTileEntityBase<TileEntityDecor>{
 		
 	@Override
 	public void render(TileEntityDecor decor, float partialTicks){
+		boolean renderHose = false;
+		
 		//If we don't have the displaylist and texture cached, do it now.
 		if(!displayListMap.containsKey(decor.definition)){
 			Map<String, Float[][]> parsedModel = OBJParser.parseOBJModel(decor.definition.getModelLocation());
@@ -24,6 +26,18 @@ public class RenderDecor extends ARenderTileEntityBase<TileEntityDecor>{
 			GL11.glNewList(displayListIndex, GL11.GL_COMPILE);
 			GL11.glBegin(GL11.GL_TRIANGLES);
 			for(Entry<String, Float[][]> entry : parsedModel.entrySet()){
+				if (decor.hose != null) {
+					//TODO:MasterLoader.coreInterface.logError("$$ Rendering - Hose exists");
+					if (decor.definition.fuelSupplier.hoseObjectName.equals(entry.getKey())) {
+						renderHose = true;
+						MasterLoader.coreInterface.logError("$$ Rendering - skipping hose segment");
+						continue; //Prevent this from rendering normally
+					}
+					else if (decor.definition.fuelSupplier.nozzleObjectName.equals(entry.getKey())) {
+						MasterLoader.coreInterface.logError("$$ Rendering - skipping nozzle");
+						continue;
+					}
+				}
 				for(Float[] vertex : entry.getValue()){
 					GL11.glTexCoord2f(vertex[3], vertex[4]);
 					GL11.glNormal3f(vertex[5], vertex[6], vertex[7]);
@@ -46,6 +60,10 @@ public class RenderDecor extends ARenderTileEntityBase<TileEntityDecor>{
 				MasterLoader.renderInterface.renderTextMarkings(decor.definition.general.textObjects, decor.getTextLines(), null, null, true);
 				MasterLoader.renderInterface.setLightingState(true);
 			}
+		}
+		
+		if(renderHose) {
+			decor.hose.generate();
 		}
 	}
 }

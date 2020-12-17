@@ -11,8 +11,10 @@ import minecrafttransportsimulator.mcinterface.IWrapperNBT;
 import minecrafttransportsimulator.mcinterface.IWrapperPlayer;
 import minecrafttransportsimulator.mcinterface.IWrapperWorld;
 import minecrafttransportsimulator.mcinterface.MasterLoader;
+import minecrafttransportsimulator.jsondefs.JSONDecor;
 import minecrafttransportsimulator.packets.instances.PacketPlayerChatMessage;
 import minecrafttransportsimulator.packets.instances.PacketTileEntityFuelPumpConnection;
+import minecrafttransportsimulator.rendering.components.HoseObject;
 import minecrafttransportsimulator.vehicles.main.EntityVehicleF_Physics;
 
 public class TileEntityFuelPump extends TileEntityDecor implements ITileEntityTickable, IFluidTankProvider{
@@ -22,6 +24,11 @@ public class TileEntityFuelPump extends TileEntityDecor implements ITileEntityTi
     public TileEntityFuelPump(IWrapperWorld world, Point3i position, IWrapperNBT data){
     	super(world, position, data);
     	this.tank = new FluidTank(data, 15000, world.isClient());
+
+		MasterLoader.coreInterface.logError("$$ Fuel Supplier exists?: " + (definition.fuelSupplier != null));
+    	this.hose = definition.fuelSupplier != null ? new HoseObject<JSONDecor>(this.definition, definition.fuelSupplier, this.tank, this.currentSubName) : null;
+    	this.hose.position = new Point3d(this.position);
+    	this.hose.angles = new Point3d(0, this.rotation, 0);
     }
 	
 	@Override
