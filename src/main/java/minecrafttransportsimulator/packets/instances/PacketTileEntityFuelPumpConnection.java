@@ -1,6 +1,7 @@
 package minecrafttransportsimulator.packets.instances;
 
 import io.netty.buffer.ByteBuf;
+import minecrafttransportsimulator.baseclasses.Point3d;
 import minecrafttransportsimulator.blocks.tileentities.instances.TileEntityFuelPump;
 import minecrafttransportsimulator.mcinterface.IWrapperPlayer;
 import minecrafttransportsimulator.mcinterface.IWrapperWorld;
@@ -44,9 +45,14 @@ public class PacketTileEntityFuelPumpConnection extends APacketTileEntity<TileEn
 					pump.connectedVehicle = vehicle;
 					vehicle.beingFueled = true;
 					pump.getTank().resetAmountDispensed();
+					vehicle.activateFuelPoint(new Point3d(pump.position));
 				}else{
 					vehicle.beingFueled = false;
 					pump.connectedVehicle = null;
+				}
+				if (pump.hose != null) {
+					System.out.println("$$ Packet calling generate");
+					pump.hose.generate();					
 				}
 				return true;
 			}

@@ -21,7 +21,7 @@ import minecrafttransportsimulator.rendering.instances.RenderDecor;
  */
 public class TileEntityDecor extends ATileEntityBase<JSONDecor>{
 	public final BoundingBox[] boundingBoxes = new BoundingBox[4];
-	public HoseObject<JSONDecor> hose;
+	public HoseObject hose;
 
 	//Generic text variables.
 	protected final List<String> textLines;

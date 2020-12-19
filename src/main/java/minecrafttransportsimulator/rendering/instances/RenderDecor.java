@@ -16,7 +16,6 @@ public class RenderDecor extends ARenderTileEntityBase<TileEntityDecor>{
 		
 	@Override
 	public void render(TileEntityDecor decor, float partialTicks){
-		boolean renderHose = false;
 		
 		//If we don't have the displaylist and texture cached, do it now.
 		if(!displayListMap.containsKey(decor.definition)){
@@ -29,12 +28,9 @@ public class RenderDecor extends ARenderTileEntityBase<TileEntityDecor>{
 				if (decor.hose != null) {
 					//TODO:MasterLoader.coreInterface.logError("$$ Rendering - Hose exists");
 					if (decor.definition.fuelSupplier.hoseObjectName.equals(entry.getKey())) {
-						renderHose = true;
-						MasterLoader.coreInterface.logError("$$ Rendering - skipping hose segment");
 						continue; //Prevent this from rendering normally
 					}
 					else if (decor.definition.fuelSupplier.nozzleObjectName.equals(entry.getKey())) {
-						MasterLoader.coreInterface.logError("$$ Rendering - skipping nozzle");
 						continue;
 					}
 				}
@@ -62,8 +58,8 @@ public class RenderDecor extends ARenderTileEntityBase<TileEntityDecor>{
 			}
 		}
 		
-		if(renderHose) {
-			decor.hose.generate();
+		if(decor.hose != null) {
+			decor.hose.render(partialTicks);
 		}
 	}
 }

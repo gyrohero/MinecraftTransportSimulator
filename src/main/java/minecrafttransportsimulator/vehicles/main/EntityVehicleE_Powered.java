@@ -420,6 +420,19 @@ abstract class EntityVehicleE_Powered extends EntityVehicleD_Moving implements I
 		}
 	}
 	
+	public void activateFuelPoint(Point3d supplierPosition) {
+		float leastDistance = 0f;
+		FuelPoint closest = null;
+		for (FuelPoint fuelPoint : this.definition.motorized.fuelPoints ) {
+			float distance = (float)fuelPoint.pos.distanceTo(supplierPosition);
+			if (leastDistance == 0f || distance < leastDistance) {
+				leastDistance = distance;
+				closest = fuelPoint;
+			}
+		}
+		this.currentFuelPoint = closest;
+	}
+	
 	//-----START OF SOUND CODE-----
 	@Override
 	public void startSounds(){
